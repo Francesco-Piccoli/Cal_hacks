@@ -48,29 +48,36 @@ tweets_str = tweets.to_numpy()
 
 print(tweets_str)
 sentiments = []
-for tweet_str in tweets_str:
-    document = types.Document(
-        content=str(tweet_str),
-        type=enums.Document.Type.PLAIN_TEXT, language = "en")
-    #annotations = client.analyze_sentiment(document=document)
-
-    # Detects the sentiment of the text
-    sentiments.append(client.analyze_sentiment(document=document).document_sentiment)
-    #Entities = client.analyze_entities(document=document)
-    #sentence_sentiment.append(sentence.sentiment.score)
+# for tweet_str in tweets_str:
+#     document = types.Document(
+#         content=str(tweet_str),
+#         type=enums.Document.Type.PLAIN_TEXT, language = "en")
+#     sentiments.append(client.analyze_sentiment(document=document).document_sentiment)
 
 
 #print(sentiments)
 #sentiment = np.asarray(sentiments)
 magnitudes = []
 scores = []
-for sentiment in sentiments:
-    magnitudes.append(sentiment.magnitude)
-    scores.append(sentiment.score)
+# for sentiment in sentiments:
+#     magnitudes.append(sentiment.magnitude)
+#     scores.append(sentiment.score)
 
+magnitudes = [line.rstrip('\n') for line in open('magnitudes.txt')]
+scores = [line.rstrip('\n') for line in open('scores.txt')]
 
 print(magnitudes)
 print(scores)
+
+# m = open("magnitudes.txt", "a")
+# for magnitude in magnitudes:
+#     m.write(str(magnitude) + "\n")
+# m.close()
+
+# s = open("scores.txt", "a")
+# for score in scores:
+#     s.write(str(score) + "\n")
+# s.close()
 
 
 # print('Text: {}'.format(tweets_str))
