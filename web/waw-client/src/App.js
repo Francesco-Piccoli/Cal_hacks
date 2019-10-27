@@ -73,8 +73,9 @@ export default function App() {
   };
 
   const profiles = [
-    createProfile("Arthur", 0, 1, 25, 1, 1),
-    createProfile("Clara", 1, 0, 26, 0.05, 1),
+    createProfile("Arthur", 0, 1, 20, 0.5, 1),
+    createProfile("Arthur", 0, 1, 30, 1, 1),
+    // createProfile("Clara", 1, 0, 20, 0.05, 1),
     createProfile("Julie", 1, 1, 27, 0.1, 0),
   ];
 

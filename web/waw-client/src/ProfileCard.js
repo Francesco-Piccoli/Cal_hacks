@@ -54,7 +54,8 @@ export default function ProfileCard(props) {
         age: props.profile.age,
         gender: props.profile.gender,
         insomnia: props.profile.insomnia,
-        ratioEmailRead: props.profile.ratioEmailRead
+        ratioEmailRead: props.profile.ratioEmailRead,
+        seasonality: props.profile.seasonality 
       })
     })
       .then(res => res.json())
@@ -144,9 +145,12 @@ export default function ProfileCard(props) {
       </Card>
       {solution.description && (
         <Card className={classes.card} style={{ marginTop: 12 }}>
-          <CardHeader title="Proposed solution" />
+          <CardHeader title={solution.risk} />
           <CardContent>
             {solution.description}
+            <br />
+            <Divider />
+            {solution.pourcentage}
             <br />
             <Divider />
             <br />

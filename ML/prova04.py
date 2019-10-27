@@ -130,7 +130,7 @@ X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(
 #
 
 logit_model=sm.Logit(Y_train,X_train)
-result=logit_model.fit()
+result=logit_model.fit(disp=0)
 # print(result.summary2())
 #
 
@@ -143,18 +143,18 @@ proba = logreg.predict_proba(X_test)
 # print(proba[:,1])
 plt.hist(proba[:,1])
 #plt.plot(X_test, proba[:,0])
-plt.show()
+# plt.show()
 confusion_matrix = confusion_matrix(y_test, y_pred)
 # print(confusion_matrix)
-print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(logreg.score(X_test, y_test)))
+# print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(logreg.score(X_test, y_test)))
 
-if len(sys.argv) == 6:
-    insomnia = sys.argv[0]
-    gender = sys.argv[1]
-    age = sys.argv[2]
-    emails_read = sys.argv[3]
-    seasonality = sys.argv[4]
-    text = sys.argv[5]
+if len(sys.argv) == 7:
+    insomnia = sys.argv[1]
+    gender = sys.argv[2]
+    age = sys.argv[3]
+    emails_read = sys.argv[4]
+    seasonality = sys.argv[5]
+    text = sys.argv[6]
 
     client = language.LanguageServiceClient()
     document = types.Document(
@@ -165,13 +165,14 @@ if len(sys.argv) == 6:
     sentiment = client.analyze_sentiment(document=document).document_sentiment
     magnitude = sentiment.magnitude
     score = sentiment.score
-    print(insomnia, gender, age, emails_read, seasonality, magnitude, sentiment)
-    new_obs = [[insomnia, gender, age, emails_read, seasonality, magnitude, sentiment]]
+    # print(insomnia, gender, age, emails_read, seasonality, magnitude, score)
+    new_obs = [[insomnia, gender, age, emails_read, seasonality, magnitude, score]]
     new_observation = pd.DataFrame(new_obs,
                                    columns=['Insomnia', 'Gender', 'Age', 'emails_read', 'seasonality', 'magnitude',
                                             'score'])
     new_prediction = logreg.predict_proba(new_observation)
-    print(new_prediction[:,1])
+    # print("new_prediction")
+    print(new_prediction[:,1][0])
 
 # #new_obs = [[1,0,22, 0.7,1, 0.7, -0.5]]
 # new_obs = [[0,1,70, 1,0, 1, 0.4]]
