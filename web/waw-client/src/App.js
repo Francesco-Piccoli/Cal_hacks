@@ -89,6 +89,7 @@ export default function App() {
           <Tab label="Profile 1" {...a11yProps(0)} />
           <Tab label="Profile 2" {...a11yProps(1)} />
           <Tab label="Profile 3" {...a11yProps(2)} />
+          <Tab label="Admin" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -99,6 +100,9 @@ export default function App() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <ProfileCard profile={profiles[2]} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <a href="http://localhost:3001/#/app/dashboard" target="_blank">Admin</a>
       </TabPanel>
     </div>
   );
