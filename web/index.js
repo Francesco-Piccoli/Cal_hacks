@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+const spawn = require("child_process").spawn;
 
 const app = express();
 
@@ -20,6 +21,18 @@ app.post("/api/analysis", (req, res) => {
   const text = req.body.text;
   const age = req.body.age;
   const response = 0.5;
+  const ls = spawn("python", ["../ML/prova04.py"]);
+
+  ls.stdout.on("data", data => {
+    console.log(`stdout: ${data}`);
+  });
+  ls.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+  });
+  
+  ls.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
   let result = {
     description: "",
     urls: [
@@ -53,8 +66,7 @@ app.post("/api/analysis", (req, res) => {
       },
       {
         description: "Meditation",
-        url:
-          "https://www.aurahealth.io/"
+        url: "https://www.aurahealth.io/"
       }
     ];
   } else {
