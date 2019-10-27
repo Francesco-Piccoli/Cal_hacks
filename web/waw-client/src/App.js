@@ -73,9 +73,9 @@ export default function App() {
   };
 
   const profiles = [
-    createProfile("Arthur", "male", "Insomnia: true", "25 years old", "100% email answered", "Seasonality: true"),
-    createProfile("Clara", "female", "Insomnia: true", "25 years old", "100% email answered", "Seasonality: true"),
-    createProfile("Julie", "female", "Insomnia: true", "25 years old", "100% email answered", "Seasonality: true"),
+    createProfile("Arthur", "male", true, 25, 100, true),
+    createProfile("Clara", "female", false, 26, 5, true),
+    createProfile("Julie", "female", true, 27, 10, false),
   ];
 
   return (
@@ -92,7 +92,7 @@ export default function App() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <ProfileCard profile={profiles[0]} />
+        <ProfileCard profile={profiles[0]}  />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ProfileCard profile={profiles[1]} />
