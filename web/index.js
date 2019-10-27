@@ -20,17 +20,21 @@ app.use(
 app.post("/api/analysis", (req, res) => {
   const text = req.body.text;
   const age = req.body.age;
+  const gender = req.body.gender;
+  const insomnia = req.body.insomnia;
+  const ratioEmailRead = req.body.ratioEmailRead;
+  const seasonality = req.body.seasonality;
+  const ls = spawn("python", ["../ML/prova04.py", insomnia,gender,age, ratioEmailRead,seasonality]);
   const response = 0.5;
-  const ls = spawn("python", ["../ML/prova04.py"]);
 
   ls.stdout.on("data", data => {
     console.log(`stdout: ${data}`);
   });
-  ls.stderr.on('data', (data) => {
+  ls.stderr.on("data", data => {
     console.log(`stderr: ${data}`);
   });
-  
-  ls.on('close', (code) => {
+
+  ls.on("close", code => {
     console.log(`child process exited with code ${code}`);
   });
   let result = {

@@ -75,6 +75,19 @@ export default function ProfileCard(props) {
 
   const { profile } = props;
   const initialName = profile.name.charAt(0);
+  const ratioEmailRead = profile.ratioEmailRead * 100;
+  let gender = "female";
+  if (profile.gender === 0) {
+    gender = "male";
+  }
+  let insomnia = false;
+  if (profile.insomnia === 1) {
+    insomnia = true;
+  }
+  let seasonality = false;
+  if (profile.seasonality === 1) {
+    seasonality = true;
+  }
 
   return (
     <div>
@@ -86,25 +99,24 @@ export default function ProfileCard(props) {
             </Avatar>
           }
           title={profile.name}
-          subheader="September 14, 2016"
         />
         <CardContent>
           <Chip
             color="primary"
-            label={profile.gender}
+            label={gender}
             className={{ margin: "25px" }}
           />{" "}
           <br /> <br />
-          <Chip color="primary" label={"Insomnia: " + profile.insomnia} />{" "}
+          <Chip color="primary" label={"Insomnia: " + insomnia} />{" "}
           <br /> <br />
           <Chip
             color="primary"
-            label={profile.ratioEmailRead + "% emails read"}
+            label={ratioEmailRead + "% emails read"}
           />{" "}
           <br /> <br />
           <Chip
             color="primary"
-            label={"Seasonality: " + profile.seasonality}
+            label={"Seasonality: " + seasonality}
           />{" "}
           <br /> <br />
           <Chip

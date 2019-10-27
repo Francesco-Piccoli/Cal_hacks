@@ -1,4 +1,5 @@
 import numpy
+import sys
 import pandas as pd
 import numpy as np
 from pandas import array
@@ -22,8 +23,8 @@ import statsmodels.api as sm
 sns.set(style="white")
 sns.set(style="whitegrid", color_codes=True)
 
-data = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\DATASET-BURNOUT4.csv', sep=";")
-# data = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/DATASET-BURNOUT4.csv', sep=";")
+# data = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\DATASET-BURNOUT4.csv', sep=";")
+data = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/DATASET-BURNOUT4.csv', sep=";")
 
 # print(data.head(20))
 # print(data.shape)
@@ -39,8 +40,8 @@ data.Burnout = data.Burnout.replace(to_replace=['No', 'Yes'], value=[0, 1])
 # Instantiates a client
 client = language.LanguageServiceClient()
 
-tweets = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\sentiment.csv', sep=";")
-# tweets = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/sentiment.csv', sep=";")
+# tweets = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\sentiment.csv', sep=";")
+tweets = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/sentiment.csv', sep=";")
 print(tweets.head(20))
 # The text to analyze
 # text = 'I really love Berkeley, it is amazing. I like it a lot. Super cool, I am so excited to tell everybody!'
@@ -112,7 +113,15 @@ print(tweets.head(20))
 # print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(logreg.score(X_test, y_test)))
 #
 #
-# #new_obs = [[1,0,22, 0.7,1]]
+
+if len(sys.argv) == 6:
+    insomnia = sys.argv[0]
+    gender = sys.argv[1]
+    age = sys.argv[2]
+    emails_read = sys.argv[3]
+    seasonality = sys.argv[4]
+    print(insomnia, gender, age, emails_read, seasonality)
+# new_obs = [[1,0,22, 0.7,1]]
 # new_obs = [[0,1,70, 1,0]]
 # # Create the pandas DataFrame
 # new_observation = pd.DataFrame(new_obs, columns=['Insomnia', 'Gender', 'Age', 'emails_read', 'seasonality'])
