@@ -1,5 +1,4 @@
-# Cal_hacks
- Hackathon
+# Cal_hacks Hackathon
 
 
 A first prototype of our tool that provides employees with a personalized Burnout Scoring. 
