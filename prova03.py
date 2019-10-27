@@ -71,3 +71,6 @@ print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(lo
 
 confusion_matrix = confusion_matrix(y_test, y_pred)
 print(confusion_matrix)
+
+print(data.shape)
+print(result.summary2())
