@@ -73,9 +73,9 @@ export default function App() {
   };
 
   const profiles = [
-    createProfile("Arthur", "male", true, 25, 100, true),
-    createProfile("Clara", "female", false, 26, 5, true),
-    createProfile("Julie", "female", true, 27, 10, false),
+    createProfile("Arthur", 0, 1, 25, 1, 1),
+    createProfile("Clara", 1, 0, 26, 0.05, 1),
+    createProfile("Julie", 1, 1, 27, 0.1, 0),
   ];
 
   return (
@@ -89,6 +89,7 @@ export default function App() {
           <Tab label="Profile 1" {...a11yProps(0)} />
           <Tab label="Profile 2" {...a11yProps(1)} />
           <Tab label="Profile 3" {...a11yProps(2)} />
+          <Tab label="Admin" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -99,6 +100,9 @@ export default function App() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <ProfileCard profile={profiles[2]} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <a href="http://localhost:3001/#/app/dashboard" target="_blank">Admin</a>
       </TabPanel>
     </div>
   );

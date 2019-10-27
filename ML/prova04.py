@@ -1,4 +1,5 @@
 import numpy
+import sys
 import pandas as pd
 import numpy as np
 from pandas import array
@@ -22,7 +23,9 @@ import statsmodels.api as sm
 sns.set(style="white")
 sns.set(style="whitegrid", color_codes=True)
 
-data = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\DATASET-BURNOUT4.csv', sep=";")
+# data = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\DATASET-BURNOUT4.csv', sep=";")
+data = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/DATASET-BURNOUT4.csv', sep=";")
+
 # print(data.head(20))
 # print(data.shape)
 # print(list(data.columns))
@@ -37,7 +40,8 @@ data.Burnout = data.Burnout.replace(to_replace=['No', 'Yes'], value=[0, 1])
 # Instantiates a client
 client = language.LanguageServiceClient()
 
-tweets = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\sentiment.csv', sep=";")
+# tweets = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\sentiment.csv', sep=";")
+tweets = pd.read_csv('/Users/papailhau/Dev/Cal_hacks/ML/sentiment.csv', sep=";")
 print(tweets.head(20))
 
 tweets_str = tweets.to_numpy()
@@ -137,6 +141,13 @@ confusion_matrix = confusion_matrix(y_test, y_pred)
 print(confusion_matrix)
 print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(logreg.score(X_test, y_test)))
 
+if len(sys.argv) == 6:
+    insomnia = sys.argv[0]
+    gender = sys.argv[1]
+    age = sys.argv[2]
+    emails_read = sys.argv[3]
+    seasonality = sys.argv[4]
+    print(insomnia, gender, age, emails_read, seasonality)
 
 #new_obs = [[1,0,22, 0.7,1, 0.7, -0.5]]
 new_obs = [[0,1,70, 1,0, 1, 0.4]]
