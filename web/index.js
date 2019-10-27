@@ -24,7 +24,14 @@ app.post("/api/analysis", (req, res) => {
   const insomnia = req.body.insomnia;
   const ratioEmailRead = req.body.ratioEmailRead;
   const seasonality = req.body.seasonality;
-  const ls = spawn("python", ["../ML/prova04.py", insomnia,gender,age, ratioEmailRead,seasonality]);
+  const ls = spawn("python", [
+    "../ML/prova04.py",
+    insomnia,
+    gender,
+    age,
+    ratioEmailRead,
+    seasonality
+  ]);
   const response = 0.5;
 
   ls.stdout.on("data", data => {
@@ -39,34 +46,30 @@ app.post("/api/analysis", (req, res) => {
   });
   let result = {
     description: "",
-    urls: [
-      "https://material-ui.com/components/dividers/",
-      "https://material-ui.com/components/"
-    ]
+    urls: []
   };
   if ((response <= 0, 5 && response > 0.25)) {
     result.description =
       "Hey, \nWhat about taking a break for a couple of seconds. We have a lot of daily tips available for you. Would you like to try our platform with exercises for your eyes? We also have a relaxation program you could like.";
     result.urls = [
       {
-        description: "Coaching",
-        url: "https://www.wellsanfrancisco.com/therapist/individual-therapy/"
-      }
+        description: "Eyes",
+        url:
+          "https://play.google.com/store/apps/details?id=com.eyeexamtest.eyecareplus&utm_source=www.eyeexamtest.com&utm_campaign=main-app&utm_medium=install_button&utm_content=apps"
+      },
+      { description: "Yoga", url: "https://www.myyogaworks.com/" }
     ];
   } else if (response <= 0.75 && response > 0.5) {
     result.description =
       "Hey, \nWhat about empowering yourself to create change in your job? What about taking a step back in your position? You could be willing to take some vacation or plan a feedback meeting with your manager.";
-    result.urls = [
-      { description: "Yoga", url: "https://www.myyogaworks.com/" }
-    ];
+    result.urls = [];
   } else if (response <= 1 && response > 0.75) {
     result.description =
       "Hey, \nYou seem to be overwhelmed these days. Would you like to be connected with advisors? Here is a list of people that could help you in your career development or to take time for yourself.";
     result.urls = [
       {
-        description: "Eyes",
-        url:
-          "https://play.google.com/store/apps/details?id=com.eyeexamtest.eyecareplus&utm_source=www.eyeexamtest.com&utm_campaign=main-app&utm_medium=install_button&utm_content=apps"
+        description: "Coaching",
+        url: "https://www.wellsanfrancisco.com/therapist/individual-therapy/"
       },
       {
         description: "Meditation",
