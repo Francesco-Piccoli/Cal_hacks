@@ -147,15 +147,32 @@ if len(sys.argv) == 6:
     age = sys.argv[2]
     emails_read = sys.argv[3]
     seasonality = sys.argv[4]
-    print(insomnia, gender, age, emails_read, seasonality)
+    text = sys.argv[5]
 
-#new_obs = [[1,0,22, 0.7,1, 0.7, -0.5]]
-new_obs = [[0,1,70, 1,0, 1, 0.4]]
-# Create the pandas DataFrame
-new_observation = pd.DataFrame(new_obs, columns=['Insomnia', 'Gender', 'Age', 'emails_read', 'seasonality', 'magnitude', 'score'])
-print(new_observation.size)
+    client = language.LanguageServiceClient()
+    document = types.Document(
+        content=text,
+        type=enums.Document.Type.PLAIN_TEXT)
+    annotations = client.analyze_sentiment(document=document)
+    # Detects the sentiment of the text
+    sentiment = client.analyze_sentiment(document=document).document_sentiment
+    magnitude = sentiment.magnitude
+    score = sentiment.score
+    print(insomnia, gender, age, emails_read, seasonality, magnitude, sentiment)
+    new_obs = [[insomnia, gender, age, emails_read, seasonality, magnitude, sentiment]]
+    new_observation = pd.DataFrame(new_obs,
+                                   columns=['Insomnia', 'Gender', 'Age', 'emails_read', 'seasonality', 'magnitude',
+                                            'score'])
+    new_prediction = logreg.predict_proba(new_observation)
+    print(new_prediction[:,1])
 
-new_prediction = logreg.predict_proba(new_observation)
-print(new_prediction[:,1])
+# #new_obs = [[1,0,22, 0.7,1, 0.7, -0.5]]
+# new_obs = [[0,1,70, 1,0, 1, 0.4]]
+# # Create the pandas DataFrame
+# new_observation = pd.DataFrame(new_obs, columns=['Insomnia', 'Gender', 'Age', 'emails_read', 'seasonality', 'magnitude', 'score'])
+# print(new_observation.size)
+#
+# new_prediction = logreg.predict_proba(new_observation)
+# print(new_prediction[:,1])
 
 
