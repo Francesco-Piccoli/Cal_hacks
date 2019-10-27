@@ -141,7 +141,7 @@ export default function ProfileCard(props) {
             Content to help you
             <ul>
               {solution.urls.map(url => {
-                return <li key={url}><a href={url} target="_blank">{url}</a></li>;
+                return <li key={url}><a href={url.url} target="_blank">{url.description}</a></li>;
               })}
             </ul>
           </CardContent>
