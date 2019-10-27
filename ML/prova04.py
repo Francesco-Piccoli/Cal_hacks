@@ -23,6 +23,8 @@ sns.set(style="white")
 sns.set(style="whitegrid", color_codes=True)
 
 data = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\DATASET-BURNOUT4.csv', sep=";")
+# data = pd.read_csv('DATASET-BURNOUT4.csv', sep=";")
+
 # print(data.head(20))
 # print(data.shape)
 # print(list(data.columns))
@@ -38,6 +40,7 @@ data.Burnout = data.Burnout.replace(to_replace=['No', 'Yes'], value=[0, 1])
 client = language.LanguageServiceClient()
 
 tweets = pd.read_csv('C:\\Users\\Francesco\\PycharmProjects\\PGAA1819\\Cal_hacks\\ML\\sentiment.csv', sep=";")
+# tweets = pd.read_csv('sentiment.csv', sep=";")
 print(tweets.head(20))
 # The text to analyze
 # text = 'I really love Berkeley, it is amazing. I like it a lot. Super cool, I am so excited to tell everybody!'
