@@ -1,38 +1,38 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import { red } from "@material-ui/core/colors";
+import Chip from "@material-ui/core/Chip";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 545,
+    maxWidth: 545
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%" // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: red[500],
-  },
+    backgroundColor: red[500]
+  }
 }));
 
 export default function ProfileCard(props) {
@@ -43,8 +43,12 @@ export default function ProfileCard(props) {
     setExpanded(!expanded);
   };
 
+  const handleSubmitClick = () => {
+    console.log(this.state.text);
+  };
+
   const [values, setValues] = React.useState({
-    text: '',
+    text: ""
   });
 
   const handleTextChange = name => event => {
@@ -66,34 +70,42 @@ export default function ProfileCard(props) {
         subheader="September 14, 2016"
       />
       <CardContent>
-        <Chip color="primary" label={profile.gender} className={{margin: '25px'}}/> {" "} <br/> <br/>
-        <Chip color="primary" label={profile.insomnia} /> {" "} <br/> <br/>
-        <Chip color="primary" label={profile.ratioEmailRead} /> {" "} <br/> <br/>
-        <Chip color="primary" label={profile.seasonality} /> {" "} <br/> <br/>
-        <Chip color="primary" label={profile.age} /> {" "} <br/> <br/>
+        <Chip
+          color="primary"
+          label={profile.gender}
+          className={{ margin: "25px" }}
+        />{" "}
+        <br /> <br />
+        <Chip color="primary" label={profile.insomnia} /> <br /> <br />
+        <Chip color="primary" label={profile.ratioEmailRead} /> <br /> <br />
+        <Chip color="primary" label={profile.seasonality} /> <br /> <br />
+        <Chip color="primary" label={profile.age} /> <br /> <br />
         <TextField
-            id="standard-name"
-            label="Text (email etc)"
-            className={classes.textField}
-            value={values.name}
-            onChange={handleTextChange('text')}
-            margin="normal"
-            fullWidth
+          id="standard-name"
+          label="Text (email etc)"
+          className={classes.textField}
+          value={values.name}
+          onChange={handleTextChange("text")}
+          margin="normal"
+          fullWidth
         />
-        <Button variant="contained" className={classes.button}>
-            Send for analysis
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={handleSubmitClick}
+        >
+          Send for analysis
         </Button>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
+            [classes.expandOpen]: expanded
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        >
-        </IconButton>
+        ></IconButton>
       </CardActions>
     </Card>
   );
